@@ -1,4 +1,4 @@
-1. El público 'artistas' responde significativamente mejor a las 'convocatorias' con un Open Rate medio de 87.86%.
-2. La temática 'convocatoria' es la que genera mayor interés inicial (Open Rate: 92.27%).
-3. Los envíos a 'programadores' tienen un rendimiento crítico (Open Rate: 30.55%), lo que sugiere la necesidad de revisar el 'subject' o la relevancia del contenido para este segmento.
-4. Se han identificado 12 campañas en el segmento 'Top Performance', que deberían servir de benchmark.
+1. El mejor día para enviar newsletters es el Viernes (Open Rate: 94.12%).
+2. El mes con mayor engagement histórico es el 4, lo que sugiere picos estacionales de interés.
+3. El público 'artistas' responde significativamente mejor a las 'convocatorias' con un Open Rate medio de 87.86%.
+4. Los envíos a 'programadores' tienen un rendimiento crítico (Open Rate: 30.55%).

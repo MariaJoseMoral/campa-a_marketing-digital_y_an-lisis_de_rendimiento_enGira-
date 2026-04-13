@@ -26,10 +26,11 @@ Tras procesar y analizar más de 50 campañas históricas, se han obtenido los s
 
 ### 🔍 Insights Estratégicos
 
-1.  **Efecto "Convocatoria":** Las campañas con temática de convocatorias abiertas son las más exitosas, alcanzando un **Open Rate récord del 92.3%**.
-2.  **Brecha de Engagement:** Existe una asimetría crítica entre públicos. Mientras los **Artistas** mantienen un Open Rate medio del **87.9%**, los **Programadores** se sitúan en un **30.6%**. Esto indica la necesidad de personalizar radicalmente los asuntos y contenidos para el sector de programación.
-3.  **Temáticas Ganadoras:** Las campañas de formación y recursos prácticos (como el *Toolkit*) generan un interés sostenido, sirviendo como gancho ideal para la conversión a servicios de pago.
-4.  **Benchmarks de Éxito:** Se han identificado **12 campañas "Top Performance"** que superan el 80% de apertura y el 30% de clics, las cuales servirán como plantilla para futuras comunicaciones.
+1.  **Dominio de las Convocatorias:** Las campañas con temática de convocatorias abiertas son las más exitosas, alcanzando un **Open Rate récord del 92.3%**.
+2.  **Momento de Envío Óptimo:** El análisis temporal revela que los **Viernes** son los días con mayor tasa de apertura (**94.1%**), seguidos por los Martes.
+3.  **Estacionalidad:** Se observa un pico de engagement en el mes de **Abril**, coincidiendo con periodos clave de planificación en el sector cultural.
+4.  **Brecha de Engagement:** Existe una asimetría crítica entre públicos. Mientras los **Artistas** mantienen un Open Rate medio del **87.9%**, los **Programadores** se sitúan en un **30.6%**.
+5.  **Temáticas Ganadoras:** Las campañas de formación y recursos prácticos (como el *Toolkit*) generan un interés sostenido.
 
 ---
 
@@ -38,16 +39,19 @@ Tras procesar y analizar más de 50 campañas históricas, se han obtenido los s
 Los análisis se apoyan en visualizaciones clave que permiten entender el comportamiento de los usuarios de un vistazo:
 
 ### 1. Mapa de Calor: Temática vs Público
-Identifica qué temas "traccionan" mejor para cada segmento. Es fundamental para priorizar el tipo de contenido según la audiencia.
 ![Mapa de Calor Temática vs Público](outputs/graficos/heatmap_tematica_publico.png)
 
-### 2. Distribución de Clics por Segmento
-Muestra la variabilidad de la conversión (Click Rate) según el éxito de la campaña. Permite validar los umbrales de "Top Performance".
-![Distribución de Clics por Segmento](outputs/graficos/boxplot_rendimiento_clickrate.png)
+### 2. Estacionalidad Mensual
+Muestra los picos de apertura y clics a lo largo del año, permitiendo planificar las campañas en los meses de mayor receptividad.
+![Estacionalidad Mensual](outputs/graficos/estacionalidad_mensual.png)
 
-### 3. Relación Volumen vs Apertura
-Analiza si el tamaño del envío (número de destinatarios) afecta a la calidad del engagement (Open Rate), segmentado por tipo de público.
-![Relación Volumen vs Apertura](outputs/graficos/scatter_volumen_openrate.png)
+### 3. Rendimiento por Día de la Semana
+Identifica claramente el Viernes como el día "estrella" para las comunicaciones de enGira!.
+![Rendimiento por Día de la Semana](outputs/graficos/rendimiento_dia_semana.png)
+
+### 4. Evolución Anual del Open Rate
+Permite visualizar el crecimiento y la consolidación del interés de la audiencia desde 2024.
+![Evolución Anual Open Rate](outputs/graficos/evolucion_anual_openrate.png)
 
 ---
 
