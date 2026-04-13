@@ -35,11 +35,19 @@ Tras procesar y analizar más de 50 campañas históricas, se han obtenido los s
 
 ## 🖼️ Visualizaciones Destacadas
 
-Los análisis se apoyan en visualizaciones que ayudan a entender el comportamiento del usuario:
+Los análisis se apoyan en visualizaciones clave que permiten entender el comportamiento de los usuarios de un vistazo:
 
-*   **Mapa de Calor Temática vs Público:** Identifica qué temas "traccionan" mejor para cada segmento. (Ver `outputs/graficos/heatmap_tematica_publico.png`)
-*   **Distribución de Clics por Segmento:** Muestra la variabilidad de la conversión según el éxito de la campaña. (Ver `outputs/graficos/boxplot_rendimiento_clickrate.png`)
-*   **Relación Volumen vs Apertura:** Analiza si el tamaño del envío afecta a la calidad del engagement. (Ver `outputs/graficos/scatter_volumen_openrate.png`)
+### 1. Mapa de Calor: Temática vs Público
+Identifica qué temas "traccionan" mejor para cada segmento. Es fundamental para priorizar el tipo de contenido según la audiencia.
+![Mapa de Calor Temática vs Público](outputs/graficos/heatmap_tematica_publico.png)
+
+### 2. Distribución de Clics por Segmento
+Muestra la variabilidad de la conversión (Click Rate) según el éxito de la campaña. Permite validar los umbrales de "Top Performance".
+![Distribución de Clics por Segmento](outputs/graficos/boxplot_rendimiento_clickrate.png)
+
+### 3. Relación Volumen vs Apertura
+Analiza si el tamaño del envío (número de destinatarios) afecta a la calidad del engagement (Open Rate), segmentado por tipo de público.
+![Relación Volumen vs Apertura](outputs/graficos/scatter_volumen_openrate.png)
 
 ---
 

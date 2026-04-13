@@ -216,9 +216,3 @@ __marimo__/
 data/raw/
 data/interim/
 data/processed/
-
-# Outputs
-outputs/graficos/
-outputs/tablas/
-outputs/informes/
-outputs/dashboards/
