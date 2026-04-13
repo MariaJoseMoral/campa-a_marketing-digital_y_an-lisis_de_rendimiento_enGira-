@@ -194,22 +194,26 @@ El proyecto se organiza en varias fases: **análisis**, **estrategia**, **activa
 
 ## 📍 Estado del proyecto
 
-🚧 **En desarrollo**
+✅ **Fases Completadas**
+1. **Análisis del rendimiento de newsletters**: Dataset unificado, limpio y transformado (`data_limpia.csv`).
+2. **Análisis exploratorio (EDA)**: Patrones de comportamiento detectados en `03_eda_newsletters.ipynb`.
+3. **Insights accionables**: Documentados en `outputs/informes/insights_preliminares.txt` y en el notebook `04`.
+4. **Segmentación de audiencias**: Clasificación por rendimiento y temática en `04_insights_segmentacion.ipynb`.
+5. **Diseño de estrategia de campaña**: Estrategia multicanal definida en `docs/estrategia_marketing.md`.
 
-Actualmente el proyecto se encuentra en la fase de:
-- recopilación y estructuración de datos históricos de campañas
-- diseño del modelo de análisis
-- definición del backlog estratégico
+🚧 **En desarrollo**
+- Activación de contenidos (Plan de contenidos inicial en estrategia).
+- Medición y tracking (Definición de KPIs completada en estrategia).
+- Dashboard y reporting (Próxima fase).
 
 ---
 
 ## 💡 Próximos pasos
 
-- Importar y limpiar exportaciones de Brevo
-- Construir dataset maestro
-- Iniciar análisis exploratorio
-- Detectar primeras hipótesis de comportamiento
-- Diseñar el marco de segmentación de audiencias
+- Automatización de contenidos (Secuencia de bienvenida).
+- Definición detallada del calendario editorial para Instagram y LinkedIn.
+- Construcción del dashboard de seguimiento en Tableau/Power BI.
+- Implementación de sistema de UTMs para tracking cross-channel.
 
 ---
 
