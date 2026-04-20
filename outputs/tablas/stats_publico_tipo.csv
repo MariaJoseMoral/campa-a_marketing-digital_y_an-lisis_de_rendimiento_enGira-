@@ -1,6 +1,4 @@
-,trackable_open_rate,trackable_open_rate,trackable_open_rate,trackable_open_rate,trackable_open_rate,trackable_open_rate,click_rate,click_rate,click_rate,click_rate,click_rate,click_rate
-tipo_campaña,convocatorias,ferias,formacion,jornadas,otros,promocion,convocatorias,ferias,formacion,jornadas,otros,promocion
-tipo_publico,,,,,,,,,,,,
-all,,72.678,90.275,100.0,100.0,58.57,,5.434,17.419999999999998,0.0,7.14,26.085
-artistas,92.26866666666666,59.21,82.662,60.2,100.0,98.39666666666666,33.757333333333335,1.77,10.784,3.385,88.89,37.46333333333333
-programadores,,30.43,18.6425,,75.82,30.794,,0.72,0.3425,,9.51,5.504
+tipo_publico,trackable_open_rate,click_rate,engagement_score
+all,78.27999999999999,11.02909090909091,31.204363636363635
+artistas,87.85703703703703,28.522222222222222,46.32266666666666
+programadores,30.5475,4.165,12.079749999999999

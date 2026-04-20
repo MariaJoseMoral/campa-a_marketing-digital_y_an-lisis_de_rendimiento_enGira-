@@ -4,7 +4,7 @@
 
 Este proyecto tiene como objetivo analizar el rendimiento histórico de las campañas de **newsletter enviadas desde el lanzamiento de la plataforma enGira!** para extraer patrones de comportamiento y convertirlos en **insights accionables** que sirvan de base para una futura **campaña de marketing digital multicanal**.
 
-La campaña está orientada a dos grandes públicos (Artistas y Programadores) y busca optimizar la captación de leads y la conversión a programas de acompañamiento profesional.
+El análisis ahora incluye métricas avanzadas de negocio como el **Engagement Score**, detección de **Outliers de Éxito** y generación de **Recomendaciones Estratégicas Automatizadas**.
 
 ---
 
@@ -12,55 +12,54 @@ La campaña está orientada a dos grandes públicos (Artistas y Programadores) y
 
 - **Analizar el rendimiento histórico** (2024-2026) de e-mail marketing.
 - **Segmentar audiencias** y definir mensajes clave basados en datos reales.
-- **Diseñar una estrategia multicanal** (Email, Instagram, LinkedIn, Web) alineada con los hallazgos.
-- **Establecer un sistema de KPIs** y tracking para la toma de decisiones.
+- **Calcular el Engagement Score** combinando Apertura (30%) y Clics (70%).
+- **Generar recomendaciones estratégicas** basadas en el análisis de correlación y éxito relativo.
 
 ---
 
-## 📈 Resultados y Hallazgos Clave
+## 📈 Resultados y Hallazgos Clave (Actualizado)
 
-Tras procesar y analizar más de 50 campañas históricas, se han obtenido los siguientes KPIs generales:
+Tras procesar y analizar las campañas históricas con el nuevo motor de insights, se han obtenido los siguientes hallazgos:
 
-*   **Open Rate (Apertura) Medio:** 68.9%
-*   **CTR (Clics) Medio:** 17.7%
+*   **Engagement Score Promedio:** Herramienta clave para priorizar temáticas.
+*   **Correlación Volumen-Apertura:** -0.15 (Indica que el crecimiento de la lista no está penalizando la apertura, permitiendo escalabilidad).
 
 ### 🔍 Insights Estratégicos
 
-1.  **Dominio de las Convocatorias:** Las campañas con temática de convocatorias abiertas son las más exitosas, alcanzando un **Open Rate récord del 92.3%**.
-2.  **Momento de Envío Óptimo:** El análisis temporal revela que los **Viernes** son los días con mayor tasa de apertura (**94.1%**), seguidos por los Martes.
-3.  **Estacionalidad:** Se observa un pico de engagement en el mes de **Abril**, coincidiendo con periodos clave de planificación en el sector cultural.
-4.  **Brecha de Engagement:** Existe una asimetría crítica entre públicos. Mientras los **Artistas** mantienen un Open Rate medio del **87.9%**, los **Programadores** se sitúan en un **30.6%**.
-5.  **Temáticas Ganadoras:** Las campañas de formación y recursos prácticos (como el *Toolkit*) generan un interés sostenido.
+1.  **Dominio de las Convocatorias:** Siguen siendo el motor del proyecto, liderando el **Engagement Score** y la conversión directa.
+2.  **Momento de Envío Óptimo:** Los **Miércoles** se consolidan como el día con mayor equilibrio entre apertura y clics (Engagement máximo).
+3.  **Detección de Éxitos Extraordinarios:** Se han identificado campañas que rinden 2 desviaciones estándar por encima de la media en CTR, sirviendo como "Benchmarks" de contenido.
+4.  **Brecha de Engagement:** El público **Artistas** mantiene una receptividad muy superior a la de los **Programadores**, quienes requieren una redefinición urgente de la propuesta de valor.
 
 ---
 
 ## 🖼️ Visualizaciones Destacadas
 
-Los análisis se apoyan en visualizaciones clave que permiten entender el comportamiento de los usuarios de un vistazo:
+### 1. Engagement Score por Temática
+Nueva métrica que permite identificar qué contenidos generan acción real, no solo curiosidad.
+![Engagement por Temática](outputs/graficos/engagement_por_tematica.png)
 
-### 1. Mapa de Calor: Temática vs Público
+### 2. Mapa de Calor: Temática vs Público
 ![Mapa de Calor Temática vs Público](outputs/graficos/heatmap_tematica_publico.png)
 
-### 2. Estacionalidad Mensual
-Muestra los picos de apertura y clics a lo largo del año, permitiendo planificar las campañas en los meses de mayor receptividad.
-![Estacionalidad Mensual](outputs/graficos/estacionalidad_mensual.png)
-
-### 3. Rendimiento por Día de la Semana
-Identifica claramente el Viernes como el día "estrella" para las comunicaciones de enGira!.
-![Rendimiento por Día de la Semana](outputs/graficos/rendimiento_dia_semana.png)
-
-### 4. Evolución Anual del Open Rate
-Permite visualizar el crecimiento y la consolidación del interés de la audiencia desde 2024.
-![Evolución Anual Open Rate](outputs/graficos/evolucion_anual_openrate.png)
+### 3. Eficiencia por Volumen (Correlación)
+Visualización de la relación entre el número de envíos y la tasa de apertura para evitar la fatiga de la audiencia.
+![Scatter Volumen vs Open Rate](outputs/graficos/scatter_volumen_openrate.png)
 
 ---
 
-## 🧰 Herramientas y tecnologías
+## 🧰 Ejecución del Proyecto
 
-- **Python:** `pandas`, `numpy`, `matplotlib`, `seaborn` para limpieza y análisis.
-- **Jupyter Notebook:** Para el desarrollo iterativo del EDA e insights.
-- **Brevo:** Fuente de datos original.
-- **Git & GitHub:** Control de versiones y documentación.
+El proyecto está totalmente automatizado a través de un pipeline de datos:
+
+```bash
+# Ejecutar el análisis completo y generar informes
+python3 pipeline.py
+```
+
+Esto ejecutará secuencialmente:
+1.  **Limpieza:** `scripts/limpiar_datos.py` (Normalización y mapeo de días).
+2.  **Análisis:** `scripts/analisis_insights.py` (Cálculo de métricas y exportación de informes).
 
 ---
 
@@ -69,32 +68,32 @@ Permite visualizar el crecimiento y la consolidación del interés de la audienc
 ```bash
 engira-marketing-analytics/
 │
-├── notebooks/
-│   ├── 02_limpieza_transformacion.ipynb    # Procesamiento del dataset original
-│   ├── 03_eda_newsletters.ipynb            # Análisis exploratorio profundo
-│   └── 04_insights_segmentacion.ipynb     # Segmentación y conclusiones
-│
+├── pipeline.py                         # Orquestador principal del análisis
 ├── scripts/
-│   ├── analisis_insights.py                # Script de generación de informes y gráficos
-│   └── limpieza.py                         # Lógica de limpieza modularizada
+│   ├── limpiar_datos.py                # Lógica de limpieza y normalización
+│   ├── analisis_insights.py            # Motor de cálculo de métricas y gráficos
+│   └── utils.py                        # Funciones comunes y clasificadores
 │
-├── outputs/                                # Resultados del análisis (Ignorado en git)
-│   ├── graficos/                           # PNGs de visualizaciones
-│   ├── tablas/                             # CSVs de estadísticas agrupadas
-│   └── informes/                           # Insights textuales resumidos
+├── notebooks/
+│   ├── 04_insights_segmentacion.ipynb  # Laboratorio de experimentación y EDA
 │
-└── docs/
-    ├── diccionario_variables.md            # Definición de métricas y origen
-    └── estrategia_marketing.md             # Documento de estrategia multicanal
+├── outputs/                            # Resultados generados automáticamente
+│   ├── graficos/                       # Visualizaciones en PNG
+│   ├── tablas/                         # CSVs (incluye 'campañas_top.csv')
+│   └── informes/                       # Recomendaciones estratégicas en TXT 🚀
+│
+└── data/
+    ├── raw/                            # Dataset original (data.csv)
+    └── processed/                      # Dataset limpio (data_limpia.csv)
 ```
 
 ---
 
 ## 🚀 Próximos Pasos
 
-- **Automatización:** Implementar secuencias de bienvenida basadas en los contenidos con mayor engagement.
-- **LinkedIn Strategy:** Desarrollar contenidos específicos para el sector "Programadores" basados en el insight de baja apertura en email.
-- **Dashboarding:** Migrar las visualizaciones estáticas a un panel interactivo en Tableau/Power BI.
+- **A/B Testing:** Aplicar las recomendaciones de los Miércoles para validar el aumento de CTR.
+- **Revisión Programadores:** Rediseñar la estrategia de asuntos para este segmento basándose en el análisis de outliers.
+- **Dashboarding:** Conectar los CSVs de `outputs/tablas/` a un panel interactivo.
 
 ---
 

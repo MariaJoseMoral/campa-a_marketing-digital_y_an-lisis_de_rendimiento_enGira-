@@ -1,0 +1,6 @@
+--- RECOMENDACIONES ESTRATÉGICAS BASADAS EN DATOS ---
+- PRIORIZACIÓN: Enfocar esfuerzos en la temática 'convocatorias', que lidera el engagement score.
+- CALENDARIO: Programar envíos preferentemente los Miércoles para optimizar la tasa de apertura y clics.
+- VOLUMEN: El volumen de envío no parece penalizar drásticamente la apertura.
+- CONTENIDO: Analizar los asuntos de las 2 campañas top para replicar patrones de éxito.
+- SEGMENTACIÓN: Los artistas muestran mayor receptividad inicial; los programadores requieren contenido más orientado a la conversión directa (click rate).

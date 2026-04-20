@@ -19,15 +19,20 @@ def run_pipeline():
         # Paso 1: Limpieza y Transformación
         print("--- PASO 1: Limpieza y Transformación ---")
         limpiar_y_transformar(RAW_DATA, PROCESSED_DATA)
+        print("✅ Datos limpiados y guardados en 'data/processed/'.")
         print()
         
         # Paso 2: Análisis y Generación de Insights
-        print("--- PASO 2: Análisis y Generación de Insights ---")
+        print("--- PASO 2: Análisis Estratégico y Generación de Insights ---")
+        # generar_insights ahora incluye Engagement Score, Outliers y Recomendaciones
         generar_insights(BASE_DIR, show_plots=False)
         print()
         
         print("✨ Pipeline finalizado con éxito.")
-        print(f"📁 Resultados disponibles en la carpeta 'outputs/'.")
+        print(f"📁 Resultados disponibles en:")
+        print(f"   - Tablas: outputs/tablas/ (incluye 'campañas_top.csv')")
+        print(f"   - Gráficos: outputs/graficos/ (incluye 'engagement_por_tematica.png')")
+        print(f"   - Informe: outputs/informes/recomendaciones_estrategicas.txt 🚀")
         
     except Exception as e:
         print(f"❌ Error durante la ejecución del pipeline: {e}")

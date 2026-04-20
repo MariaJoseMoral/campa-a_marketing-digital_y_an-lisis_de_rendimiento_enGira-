@@ -2,38 +2,7 @@
 import pandas as pd
 import numpy as np
 import os
-
-def clasificar_campaña(nombre):
-    """Clasifica la temática de la campaña según palabras clave en el asunto."""
-    if not isinstance(nombre, str):
-        return "otros"
-    
-    nombre = nombre.lower()
-    if "convocatorias" in nombre:
-        return "convocatorias"
-    elif "jornadas" in nombre:
-        return "jornadas"
-    elif "demo" in nombre or 'webinar' in nombre or 'registro' in nombre:
-        return "formacion"
-    elif "dferia" in nombre or 'madferia' in nombre or 'mercartes' in nombre:
-        return "ferias"
-    elif "descubre" in nombre or "descobreix" in nombre or 'funcionamiento' in nombre or 'piloto' in nombre or 'destacados' in nombre:
-        return "promocion"
-    else:
-        return "otros"
-
-def clasificar_publico(nombre):
-    """Clasifica el público objetivo según palabras clave en el nombre de la campaña."""
-    if not isinstance(nombre, str):
-        return "all"
-        
-    nombre = nombre.lower()
-    if 'artistas' in nombre or 'convocatorias' in nombre or 'webinar' in nombre or 'diagnostico' in nombre:
-        return 'artistas'
-    elif 'programadores' in nombre or 'demo' in nombre:
-        return 'programadores'
-    else:
-        return 'all'
+from scripts.utils import clasificar_campaña, clasificar_publico
 
 def limpiar_y_transformar(raw_path, processed_path):
     """Ejecuta el pipeline de limpieza y transformación de datos."""
@@ -45,22 +14,26 @@ def limpiar_y_transformar(raw_path, processed_path):
     # Cargar datos (saltando las 3 primeras filas de metadatos del exportador)
     df = pd.read_csv(raw_path, sep=";", engine="python", skiprows=3)
     
-    # Eliminar columnas irrelevantes
-    df = df.drop(columns=[
-        "Name from", "Email from", "Hard bounces", 
-        "Soft bounces", "Non delivered", "Delivered", 
-        "Unsubscribed", "Complaints"
-    ], errors='ignore')
-    
-    # Normalizar nombres de columnas
+    # Normalizar nombres de columnas (antes de borrar para evitar errores de case)
     df.columns = df.columns.str.strip().str.lower().str.replace(" ", "_").str.replace("-", "_")
+    
+    # Eliminar columnas irrelevantes
+    cols_to_drop = [
+        "name_from", "email_from", "hard_bounces", 
+        "soft_bounces", "non_delivered", "delivered", 
+        "unsubscribed", "complaints"
+    ]
+    df = df.drop(columns=cols_to_drop, errors='ignore')
     
     # Transformar fechas
     df['sending_date'] = pd.to_datetime(df["sending_date"], dayfirst=True, errors="coerce")
     df['year'] = df['sending_date'].dt.year
     df['month'] = df['sending_date'].dt.month
     df['day'] = df['sending_date'].dt.day
-    df['weekday'] = df['sending_date'].dt.weekday
+    
+    # Generar nombre del día en español
+    weekday_map = {0: 'Lunes', 1: 'Martes', 2: 'Miércoles', 3: 'Jueves', 4: 'Viernes', 5: 'Sábado', 6: 'Domingo'}
+    df['weekday'] = df['sending_date'].dt.weekday.map(weekday_map)
     
     # Limpiar strings de texto
     df['subject'] = df['subject'].str.lower().str.strip()
@@ -95,7 +68,6 @@ def limpiar_y_transformar(raw_path, processed_path):
     print(f"✅ Datos limpios guardados en: {processed_path}")
 
 if __name__ == "__main__":
-    # Definir rutas relativas a la raíz del proyecto
     try:
         script_dir = os.path.dirname(os.path.abspath(__file__))
         BASE_DIR = os.path.abspath(os.path.join(script_dir, ".."))
