@@ -122,3 +122,65 @@ Aquí tenéis el resumen actualizado de los últimos insights generados por el p
 Atentamente,
 El Sistema de Análisis Automático enGira 🚀
 ============================================================
+
+--- ENVÍO REALIZADO EL 2026-04-20 12:22:46 ---
+
+============================================================
+📧 ASUNTO: Resumen Ejecutivo - Análisis de Marketing Digital enGira
+FECHA: 2026-04-20 12:22:46
+============================================================
+
+Hola equipo,
+
+Aquí tenéis el resumen actualizado de los últimos insights generados por el pipeline:
+
+--- INFORME ESTRATÉGICO MARKETING DIGITAL ---
+1. El mejor día para maximizar el engagement es el Miércoles.
+2. El mes con mayor engagement histórico es el mes 4.
+3. La temática con mejor desempeño (Engagement Score) es: convocatorias.
+4. Correlación Volumen-Apertura: -0.15 (No hay una correlación clara).
+5. Se han identificado 13 campañas de 'Top Performance' (Criterio P75).
+6. 2 campañas son consideradas 'Outliers de Éxito' (>2 std en Click Rate).
+
+--- RECOMENDACIONES CLAVE ---
+--- RECOMENDACIONES ESTRATÉGICAS BASADAS EN DATOS ---
+- PRIORIZACIÓN: Enfocar esfuerzos en la temática 'convocatorias', que lidera el engagement score.
+- CALENDARIO: Programar envíos preferentemente los Miércoles para optimizar la tasa de apertura y clics.
+- VOLUMEN: El volumen de envío no parece penalizar drásticamente la apertura.
+- CONTENIDO: Analizar los asuntos de las 2 campañas top para replicar patrones de éxito.
+- SEGMENTACIÓN: Los artistas muestran mayor receptividad inicial; los programadores requieren contenido más orientado a la conversión directa (click rate).
+
+Atentamente,
+El Sistema de Análisis Automático enGira 🚀
+============================================================
+
+--- ENVÍO REALIZADO EL 2026-04-20 12:24:28 ---
+
+============================================================
+📧 ASUNTO: Resumen Ejecutivo - Análisis de Marketing Digital enGira
+FECHA: 2026-04-20 12:24:28
+============================================================
+
+Hola equipo,
+
+Aquí tenéis el resumen actualizado de los últimos insights generados por el pipeline:
+
+--- INFORME ESTRATÉGICO MARKETING DIGITAL ---
+1. El mejor día para maximizar el engagement es el Miércoles.
+2. El mes con mayor engagement histórico es el mes 4.
+3. La temática con mejor desempeño (Engagement Score) es: convocatorias.
+4. Correlación Volumen-Apertura: -0.15 (No hay una correlación clara).
+5. Se han identificado 13 campañas de 'Top Performance' (Criterio P75).
+6. 2 campañas son consideradas 'Outliers de Éxito' (>2 std en Click Rate).
+
+--- RECOMENDACIONES CLAVE ---
+--- RECOMENDACIONES ESTRATÉGICAS BASADAS EN DATOS ---
+- PRIORIZACIÓN: Enfocar esfuerzos en la temática 'convocatorias', que lidera el engagement score.
+- CALENDARIO: Programar envíos preferentemente los Miércoles para optimizar la tasa de apertura y clics.
+- VOLUMEN: El volumen de envío no parece penalizar drásticamente la apertura.
+- CONTENIDO: Analizar los asuntos de las 2 campañas top para replicar patrones de éxito.
+- SEGMENTACIÓN: Los artistas muestran mayor receptividad inicial; los programadores requieren contenido más orientado a la conversión directa (click rate).
+
+Atentamente,
+El Sistema de Análisis Automático enGira 🚀
+============================================================

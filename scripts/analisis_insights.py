@@ -60,14 +60,14 @@ def generar_insights(project_root, show_plots=True):
     
     df['top_campaign'] = ((df['trackable_open_rate'] >= open_p75) & (df['click_rate'] >= click_p75)).astype(int)
     
-    # Generar tabla de benchmark comparativo
-    benchmark = df.groupby('top_campaign')[['trackable_open_rate', 'click_rate', 'engagement_score']].mean().round(2)
-    benchmark.index = ['No Top', 'Top Performance']
-    benchmark.to_csv(os.path.join(outputs_tablas, "benchmark_top_performance.csv"))
+    # Generar tabla de benchmark (listado detallado de las 13 campañas Top Performance - Insight 5)
+    benchmark_list = df[df['top_campaign'] == 1][['subject', 'tipo_campaña', 'tipo_publico', 'sending_date', 'click_rate', 'engagement_score']]
+    benchmark_list = benchmark_list.round(2).sort_values('engagement_score', ascending=False)
+    benchmark_list.to_csv(os.path.join(outputs_tablas, "benchmark_top_performance.csv"), index=False)
 
-    # 2.3. Outliers de Éxito (Click Rate > media + 2*std)
+    # 2.3. Outliers de Éxito (Click Rate > media + 2*std - Insight 6)
     umbral_click = df['click_rate'].mean() + (2 * df['click_rate'].std())
-    campanas_top_outliers = df[df['click_rate'] > umbral_click][['subject', 'tipo_campaña', 'sending_date', 'click_rate', 'engagement_score']]
+    campanas_top_outliers = df[df['click_rate'] > umbral_click][['subject', 'tipo_campaña', 'tipo_publico', 'sending_date', 'click_rate', 'engagement_score']]
     campanas_top_outliers = campanas_top_outliers.round(2)
     campanas_top_outliers.sort_values('engagement_score', ascending=False).to_csv(os.path.join(outputs_tablas, "campañas_top.csv"), index=False)
 
