@@ -3,6 +3,7 @@ import os
 import sys
 from scripts.limpiar_datos import limpiar_y_transformar
 from scripts.analisis_insights import generar_insights
+from scripts.enviar_notificaciones import enviar_resumen_notificacion
 
 def run_pipeline():
     """
@@ -27,12 +28,17 @@ def run_pipeline():
         # generar_insights ahora incluye Engagement Score, Outliers y Recomendaciones
         generar_insights(BASE_DIR, show_plots=False)
         print()
+
+        # Paso 3: Envío de Notificaciones
+        enviar_resumen_notificacion(BASE_DIR)
+        print()
         
         print("✨ Pipeline finalizado con éxito.")
         print(f"📁 Resultados disponibles en:")
-        print(f"   - Tablas: outputs/tablas/ (incluye 'campañas_top.csv')")
+        print(f"   - Tablas: outputs/tablas/ (incluye 'campañas_top.csv' y 'benchmark_top_performance.csv')")
         print(f"   - Gráficos: outputs/graficos/ (incluye 'engagement_por_tematica.png')")
         print(f"   - Informe: outputs/informes/recomendaciones_estrategicas.txt 🚀")
+        print(f"   - Log de Notificaciones: outputs/informes/notificaciones_enviadas.txt 📧")
         
     except Exception as e:
         print(f"❌ Error durante la ejecución del pipeline: {e}")

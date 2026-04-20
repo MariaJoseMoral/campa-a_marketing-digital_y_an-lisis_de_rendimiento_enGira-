@@ -41,9 +41,10 @@ def generar_insights(project_root, show_plots=True):
 
     # 2. FILTRADO Y SEGMENTACIÓN
     # Identificar campañas con volumen insuficiente (<50 envíos)
+    df_filtered = df[df['sent'] >= 50].copy()
     invalid_campaigns = df[df['sent'] < 50]['campaign_name'].unique()
     
-    # Aplicar segmentación de rendimiento
+    # Aplicar segmentación de rendimiento (usando lógica previa para compatibilidad)
     df['segmento_rendimiento'] = df.apply(lambda row: segmentar_rendimiento(row, invalid_campaigns), axis=1)
 
     # Aplicar detección de temática específica del asunto
@@ -53,11 +54,22 @@ def generar_insights(project_root, show_plots=True):
     # 2.1. Engagement Score
     df['engagement_score'] = ((df['trackable_open_rate'] * 0.3) + (df['click_rate'] * 0.7)).round(2)
 
-    # 2.2. Outliers de Éxito (Click Rate > media + 2*std)
+    # 2.2. Benchmark Top Performance (Percentiles P75)
+    open_p75 = df_filtered['trackable_open_rate'].quantile(0.75)
+    click_p75 = df_filtered['click_rate'].quantile(0.75)
+    
+    df['top_campaign'] = ((df['trackable_open_rate'] >= open_p75) & (df['click_rate'] >= click_p75)).astype(int)
+    
+    # Generar tabla de benchmark comparativo
+    benchmark = df.groupby('top_campaign')[['trackable_open_rate', 'click_rate', 'engagement_score']].mean().round(2)
+    benchmark.index = ['No Top', 'Top Performance']
+    benchmark.to_csv(os.path.join(outputs_tablas, "benchmark_top_performance.csv"))
+
+    # 2.3. Outliers de Éxito (Click Rate > media + 2*std)
     umbral_click = df['click_rate'].mean() + (2 * df['click_rate'].std())
-    campanas_top = df[df['click_rate'] > umbral_click][['subject', 'tipo_campaña', 'sending_date', 'click_rate', 'engagement_score']]
-    campanas_top = campanas_top.round(2)
-    campanas_top.sort_values('engagement_score', ascending=False).to_csv(os.path.join(outputs_tablas, "campañas_top.csv"), index=False)
+    campanas_top_outliers = df[df['click_rate'] > umbral_click][['subject', 'tipo_campaña', 'sending_date', 'click_rate', 'engagement_score']]
+    campanas_top_outliers = campanas_top_outliers.round(2)
+    campanas_top_outliers.sort_values('engagement_score', ascending=False).to_csv(os.path.join(outputs_tablas, "campañas_top.csv"), index=False)
 
     # 2.3. Correlación Volumen vs Open Rate
     correlacion_vol = df['sent'].corr(df['trackable_open_rate'])
@@ -141,16 +153,18 @@ def generar_insights(project_root, show_plots=True):
     # ==============================
     # 5. INFORME Y RECOMENDACIONES
     # ==============================
+    # 5. INFORME Y RECOMENDACIONES
     mejor_dia = weekday_stats['engagement_score'].idxmax()
     mejor_tematica = df.groupby('tipo_campaña')['engagement_score'].mean().idxmax()
     mejor_mes = df.groupby('month')['engagement_score'].mean().idxmax()
-    
+
     # Análisis de correlación para recomendaciones
     correlacion_msg = "Existe una correlación negativa moderada" if correlacion_vol < -0.3 else "No hay una correlación clara"
     if correlacion_vol > 0.3: correlacion_msg = "Existe una correlación positiva"
 
-    top_perf_count = len(df[df['segmento_rendimiento'] == 'Top Performance'])
-    
+    # Usar el conteo basado en percentiles (P75) para el informe
+    top_perf_count = df['top_campaign'].sum()
+
     # 5.1. Informe de Insights (Existente)
     insights = [
         "--- INFORME ESTRATÉGICO MARKETING DIGITAL ---",
@@ -158,8 +172,8 @@ def generar_insights(project_root, show_plots=True):
         f"2. El mes con mayor engagement histórico es el mes {mejor_mes}.",
         f"3. La temática con mejor desempeño (Engagement Score) es: {mejor_tematica}.",
         f"4. Correlación Volumen-Apertura: {correlacion_vol:.2f} ({correlacion_msg}).",
-        f"5. Se han identificado {top_perf_count} campañas de 'Top Performance'.",
-        f"6. {len(campanas_top)} campañas son consideradas 'Outliers de Éxito' (>2 std en Click Rate)."
+        f"5. Se han identificado {top_perf_count} campañas de 'Top Performance' (Criterio P75).",
+        f"6. {len(campanas_top_outliers)} campañas son consideradas 'Outliers de Éxito' (>2 std en Click Rate)."
     ]
 
     with open(os.path.join(outputs_informes, "insights_finales.txt"), "w") as f:
@@ -171,7 +185,7 @@ def generar_insights(project_root, show_plots=True):
         f"- PRIORIZACIÓN: Enfocar esfuerzos en la temática '{mejor_tematica}', que lidera el engagement score.",
         f"- CALENDARIO: Programar envíos preferentemente los {mejor_dia} para optimizar la tasa de apertura y clics.",
         f"- VOLUMEN: {'Reducir el tamaño de las listas para aumentar el OR' if correlacion_vol < -0.4 else 'El volumen de envío no parece penalizar drásticamente la apertura'}.",
-        f"- CONTENIDO: Analizar los asuntos de las {len(campanas_top)} campañas top para replicar patrones de éxito.",
+        f"- CONTENIDO: Analizar los asuntos de las {len(campanas_top_outliers)} campañas top para replicar patrones de éxito.",
         "- SEGMENTACIÓN: Los artistas muestran mayor receptividad inicial; los programadores requieren contenido más orientado a la conversión directa (click rate)."
     ]
 
