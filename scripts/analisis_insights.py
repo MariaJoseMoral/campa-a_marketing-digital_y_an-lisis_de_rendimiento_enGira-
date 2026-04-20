@@ -51,11 +51,12 @@ def generar_insights(project_root, show_plots=True):
 
     # --- NUEVAS MÉTRICAS DE NEGOCIO ---
     # 2.1. Engagement Score
-    df['engagement_score'] = (df['trackable_open_rate'] * 0.3) + (df['click_rate'] * 0.7)
+    df['engagement_score'] = ((df['trackable_open_rate'] * 0.3) + (df['click_rate'] * 0.7)).round(2)
 
     # 2.2. Outliers de Éxito (Click Rate > media + 2*std)
     umbral_click = df['click_rate'].mean() + (2 * df['click_rate'].std())
     campanas_top = df[df['click_rate'] > umbral_click][['subject', 'tipo_campaña', 'sending_date', 'click_rate', 'engagement_score']]
+    campanas_top = campanas_top.round(2)
     campanas_top.sort_values('engagement_score', ascending=False).to_csv(os.path.join(outputs_tablas, "campañas_top.csv"), index=False)
 
     # 2.3. Correlación Volumen vs Open Rate
@@ -65,20 +66,20 @@ def generar_insights(project_root, show_plots=True):
     # 3. GUARDADO DE TABLAS
     # ==============================
     # Estadísticas anuales y mensuales
-    df.groupby('year')[['trackable_open_rate', 'click_rate', 'engagement_score']].mean().to_csv(os.path.join(outputs_tablas, "stats_por_año.csv"))
-    df.groupby('month')[['trackable_open_rate', 'click_rate', 'engagement_score']].mean().to_csv(os.path.join(outputs_tablas, "stats_por_mes.csv"))
+    df.groupby('year')[['trackable_open_rate', 'click_rate', 'engagement_score']].mean().round(2).to_csv(os.path.join(outputs_tablas, "stats_por_año.csv"))
+    df.groupby('month')[['trackable_open_rate', 'click_rate', 'engagement_score']].mean().round(2).to_csv(os.path.join(outputs_tablas, "stats_por_mes.csv"))
 
     # Rendimiento por día de la semana
     # La columna 'weekday' ya contiene los nombres en español según la inspección de datos
     df['weekday_name'] = df['weekday']
     weekday_stats = df.groupby('weekday_name')[['trackable_open_rate', 'click_rate', 'engagement_score']].mean().reindex(['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'])
     # Eliminar filas con NaN si algún día no tiene datos
-    weekday_stats = weekday_stats.dropna(subset=['engagement_score'])
+    weekday_stats = weekday_stats.dropna(subset=['engagement_score']).round(2)
     weekday_stats.to_csv(os.path.join(outputs_tablas, "stats_por_dia.csv"))
 
     # Estadísticas por temática y público
-    df.groupby('tipo_campaña')[['trackable_open_rate', 'click_rate', 'engagement_score']].mean().sort_values('engagement_score', ascending=False).to_csv(os.path.join(outputs_tablas, "stats_por_tematica.csv"))
-    df.groupby('tipo_publico')[['trackable_open_rate', 'click_rate', 'engagement_score']].mean().to_csv(os.path.join(outputs_tablas, "stats_publico_tipo.csv"))
+    df.groupby('tipo_campaña')[['trackable_open_rate', 'click_rate', 'engagement_score']].mean().sort_values('engagement_score', ascending=False).round(2).to_csv(os.path.join(outputs_tablas, "stats_por_tematica.csv"))
+    df.groupby('tipo_publico')[['trackable_open_rate', 'click_rate', 'engagement_score']].mean().round(2).to_csv(os.path.join(outputs_tablas, "stats_publico_tipo.csv"))
 
     print(f"📊 Tablas estadísticas guardadas en: {outputs_tablas}")
 
